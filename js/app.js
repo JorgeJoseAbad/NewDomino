@@ -32,8 +32,8 @@ console.log(dominoGame.playerOne.body);
 
 console.log(dominoGame.playerTwo.body);
 
-
-$("button").click(function(){
+//start buttton to begin the game...
+$("button.startGame").click(function(){
 
   console.log("You clicked the button!");
   dominoGame.playerOne.startPlayer(dominoGame.dominoBox);

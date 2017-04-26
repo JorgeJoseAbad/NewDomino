@@ -98,21 +98,6 @@ if (this.name==='playerTwo'){
     }
 };
 
-/*
-
-    if (this.name==='playerOne'){
-      $('.dominoTokenP1[tokenNumber='+i+']').addClass('domino');
-      $('.dominoTokenP1[tokenNumber="'+i+'"]')[0].childNodes[0].innerHTML = this.body[0].number1;
-      $('.dominoTokenP1[tokenNumber="'+i+'"]')[0].childNodes[1].innerHTML = this.body[0].number2;
-        }
-        if (this.name==='playerTwo'){
-          $('.dominoTokenP2[tokenNumber='+i+']').addClass('domino');
-          $('.dominoTokenP2[tokenNumber="'+i+'"]')[0].childNodes[0].innerHTML = this.body[0].number1;
-          $('.dominoTokenP2[tokenNumber="'+i+'"]')[0].childNodes[1].innerHTML = this.body[0].number2;
-          }
-*/
-
-
 
 Player.prototype.startPlayer=function(dominoBox){
 
