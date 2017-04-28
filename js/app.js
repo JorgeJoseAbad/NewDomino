@@ -3,12 +3,10 @@
 function DominoGame(options){
   this.playerOne=options.playerOne;
   this.playerTwo=options.playerTwo;
-  //this.gameBoard=;
-  this.dominoBox=options.dominoBox;
 
-  //this.dominoBox.print();
-  //this.dominoBox.shuffle();
-  //this.dominoBox.print();
+  this.dominoBox=options.dominoBox;
+  this.gameBoard=options.gameBoard;
+
 
 }
 
@@ -17,20 +15,15 @@ function DominoGame(options){
 var dominoGame = new DominoGame({
   playerOne:playerOne,
   playerTwo:playerTwo,
-  //gameBoard;
-  dominoBox:dominoBox
+
+  dominoBox:dominoBox,
+  gameBoard:gameBoard,
 });
 
 dominoGame.dominoBox.print();
 dominoGame.dominoBox.shuffle();
 dominoGame.dominoBox.print();
 
-
-console.log(dominoGame.playerOne);
-
-console.log(dominoGame.playerOne.body);
-
-console.log(dominoGame.playerTwo.body);
 
 //start buttton to begin the game...
 $("button.startGame").click(function(){
@@ -50,7 +43,7 @@ $("button.startGame").click(function(){
               dominoGame.playerOne.turn=true;
               dominoGame.playerOne.showPlayerDominoes();
               }
-
+ dominoGame.gameBoard.drawBoard();
 
 });
 

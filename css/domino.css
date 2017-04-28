@@ -13,6 +13,28 @@ body{
   background-color: #3367e0;
 }
 
+.boardTable {
+  height: 600px;
+  margin: 20px auto;
+  width: 600px;
+  background-color: red;
+
+}
+
+.cell-board {
+  background-size: contain;
+  box-sizing: border-box;
+  float: left;
+  height: 20px;
+  width: 20px;
+  background-color: #474747;
+}
+
+.board {
+  background-color: #E3D4AB;
+}
+
+
 .player{
   height: 80px;
   margin: 20px auto;
