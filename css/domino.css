@@ -13,7 +13,7 @@ body{
   background-color: #3367e0;
 }
 
-.boardTable {
+.boardtable {
   height: 600px;
   margin: 20px auto;
   width: 600px;
@@ -45,20 +45,20 @@ body{
 }
 
 
-.namePlayer{
+.nameplayer{
   text-align: center;
 }
 
-#dominoesPlayerOne, #dominoesPlayerTwo{
+#dominoesplayerone, #dominoesplayertwo{
   height: 40px;
   background-color: grey;
 }
 
-.dominoNumberClass{
+.dominonumberclass{
   border: 2px;
   border-color: black;
 }
-.dominoPlayerOne,.dominoPlayerTwo {
+.dominoplayerone,.dominoplayertwo, {
   float: left;
   height: 40px;
   width: 30px;
@@ -71,7 +71,7 @@ body{
   text-align: center;
 }
 
-.dominoPlayerTwo.filled,.dominoPlayerOne.filled {
+.dominoplayertwo.filled,.dominoplayerone.filled,{
   float: left;
   height: 40px;
   width: 30px;
