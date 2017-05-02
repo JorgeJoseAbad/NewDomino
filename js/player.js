@@ -144,3 +144,34 @@ Player.prototype.removePlayerDominoes=function(){
     $(".dominoplayertwo.filled").remove();
   }
 };
+
+//recibe el jugador que tiene turno y lo cambia aun no probado
+Player.prototype.changeTurn=function(){
+  if (this.name==='playerOne'){
+    this.turn=false;
+    playerTwo.turn=true;
+  } else if (this.name==='playerTwo'){
+    this.turn=false;
+    playerOne.turn=true;
+  }
+};
+
+Player.prototype.hideDominoes=function(){
+  if (this.name==='playerOne'){
+    console.log("intento quitar visibilidad player one");
+    $('#dominoesplayerone').addClass('hide');
+  } else if (this.name==='playerTwo'){
+    console.log("intento quitar visibilidad player one");
+    $('#dominoesplayertwo').addClass('hide');
+  }
+};
+
+Player.prototype.showDominoes=function(){
+  if (this.name==='playerOne'){
+    console.log("intento quitar visibilidad player one");
+    $('#dominoesplayerone').removeClass('hide');
+  } else if (this.name==='playerTwo'){
+    console.log("intento quitar visibilidad player one");
+    $('#dominoesplayertwo').removeClass('hide');
+  }
+};

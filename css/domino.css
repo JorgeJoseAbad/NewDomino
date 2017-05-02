@@ -63,6 +63,12 @@ body{
   background-color: grey;
 }
 
+#dominoesplayerone.hide, #dominoesplayertwo.hide{
+  visibility: hidden;
+  height: 40px;
+  background-color: grey;
+}
+
 .dominonumberclass{
   border: 2px;
   border-color: black;
