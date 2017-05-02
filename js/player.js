@@ -62,8 +62,7 @@
               .addClass('dominoplayerone')
               .attr('picknumber',columnsPlayerindex)
               );
-          }
-
+            }
             $('#dominoesplayerone .dominoplayerone').append($('<div>')
               .addClass('dominonumberclass')
               .attr('dominonumber',1)
@@ -72,12 +71,13 @@
               .addClass('dominonumberclass')
               .attr('dominonumber',2)
             );
-            for (var i=0; i<this.body.length; i++){
-                $('.dominoplayerone[picknumber='+i+']').addClass('filled');
-                $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[0].innerHTML= this.body[i].numberOne;
-                $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[1].innerHTML= this.body[i].numberTwo;
 
-              }
+          for (var i=0; i<this.body.length; i++){
+              $('.dominoplayerone[picknumber='+i+']').addClass('filled');
+              $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[0].innerHTML= this.body[i].numberOne;
+              $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[1].innerHTML= this.body[i].numberTwo;
+
+            }
         }
 
     if (this.name==='playerTwo'){
@@ -88,17 +88,16 @@
               .addClass('dominoplayertwo')
               .attr('picknumber',columnsPlayerindex)
               );
+            }
+            $('#dominoesplayertwo .dominoplayertwo').append($('<div>')
+              .addClass('dominonumberclass')
+              .attr('dominonumber',1)
+            );
+            $('#dominoesplayertwo .dominoplayertwo').append($('<div>')
+              .addClass('dominonumberclass')
+              .attr('dominonumber',2)
+            );
 
-          }
-
-          $('#dominoesplayertwo .dominoplayertwo').append($('<div>')
-            .addClass('dominonumberclass')
-            .attr('dominonumber',1)
-          );
-          $('#dominoesplayertwo .dominoplayertwo').append($('<div>')
-            .addClass('dominonumberclass')
-            .attr('dominonumber',2)
-          );
           for (var j=0; j<this.body.length; j++){
               $('.dominoplayertwo[picknumber='+j+']').addClass('filled');
               $('.dominoplayertwo.filled[picknumber="'+j+'"]')[0].childNodes[0].innerHTML= this.body[j].numberOne;
@@ -134,3 +133,14 @@
       }
       return false;
     };
+
+Player.prototype.removePlayerDominoes=function(){
+  if (this.name==='playerOne'){
+    console.log('intento quitar clases playerOne');
+    $(".dominoplayerone.filled").remove();
+  }
+  if (this.name==='playerTwo'){
+    console.log('intento quitar clases playerTwo');
+    $(".dominoplayertwo.filled").remove();
+  }
+};

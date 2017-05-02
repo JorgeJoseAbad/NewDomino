@@ -30,6 +30,15 @@ body{
   background-color: #474747;
 }
 
+.cell-board.filled {
+  background-size: contain;
+  box-sizing: border-box;
+  float: left;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}
+
 .board {
   background-color: #E3D4AB;
 }
@@ -58,7 +67,7 @@ body{
   border: 2px;
   border-color: black;
 }
-.dominoplayerone,.dominoplayertwo, {
+.dominoplayerone,.dominoplayertwo {
   float: left;
   height: 40px;
   width: 30px;
@@ -71,7 +80,7 @@ body{
   text-align: center;
 }
 
-.dominoplayertwo.filled,.dominoplayerone.filled,{
+.dominoplayertwo.filled,.dominoplayerone.filled{
   float: left;
   height: 40px;
   width: 30px;

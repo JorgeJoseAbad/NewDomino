@@ -1,6 +1,6 @@
 'esversion: 6';
 
-$(document).ready(function(){
+//$(document).ready(function(){
 
     function DominoGame(options){
       this.playerOne=options.playerOne;
@@ -50,18 +50,43 @@ $(document).ready(function(){
 
     });
 
-    console.log(" he leido primero esto");
 
-    $(".dominoplayerone.filled").click(function(){
-      console.log("you clicked one");
+
+    var numberSelectedDomino;
+    var selectedDomino;
+
+    $(document).on('click', ".dominoplayerone.filled", function() {
+
+      numberSelectedDomino=$(this).attr('picknumber');
+      console.log(numberSelectedDomino);
+      dominoGame.playerOne.removePlayerDominoes();
+      selectedDomino=dominoGame.playerOne.body.splice(numberSelectedDomino,1)[0];
+      console.log(selectedDomino);
+      dominoGame.playerOne.showPlayerDominoes();
+
     });
 
-    $('.dominoplayertwo.filled').click(function(){
-      console.log("you clicked two");
+    $(document).on('click', ".dominoplayertwo.filled", function() {
+
+      numberSelectedDomino=$(this).attr('picknumber');
+      console.log(numberSelectedDomino);
+      dominoGame.playerTwo.removePlayerDominoes();
+      selectedDomino=dominoGame.playerTwo.body.splice(numberSelectedDomino,1)[0];
+      console.log(selectedDomino);
+      dominoGame.playerTwo.showPlayerDominoes();
+
+    });
+
+    $(document).on('click','.cell-board',function(){
+      console.log("a ver si hago push");
+      dominoGame.gameBoard.domino.push(selectedDomino);
+      console.log(dominoGame.gameBoard.domino);
+      console.log(this); //this is the cell-board where i clicked
+      $(this).addClass('filled');
+      $(this).html(selectedDomino.numberOne);
     });
 
 
-    console.log("he leido esto");
 
 
 
@@ -100,4 +125,4 @@ $(document).ready(function(){
     console.log("nextDomino");
     console.log(nextDomino);
     */
-});
+//});
