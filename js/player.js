@@ -13,13 +13,6 @@
     }
 
 
-    var playerOne = new Player({
-      name: "playerOne",
-    });
-
-    var playerTwo= new Player({
-      name: "playerTwo",
-    });
 
     //funcion que retorna si existe una ficha del array del jugador, si se pasa sin numero a buscar
     // retorna la primera ficha del array
@@ -161,17 +154,30 @@ Player.prototype.hideDominoes=function(){
     console.log("intento quitar visibilidad player one");
     $('#dominoesplayerone').addClass('hide');
   } else if (this.name==='playerTwo'){
-    console.log("intento quitar visibilidad player one");
+    console.log("intento quitar visibilidad player Two");
     $('#dominoesplayertwo').addClass('hide');
   }
 };
 
 Player.prototype.showDominoes=function(){
   if (this.name==='playerOne'){
-    console.log("intento quitar visibilidad player one");
+    console.log("intento dar visibilidad player one");
     $('#dominoesplayerone').removeClass('hide');
   } else if (this.name==='playerTwo'){
-    console.log("intento quitar visibilidad player one");
+    console.log("intento dar visibilidad player two");
     $('#dominoesplayertwo').removeClass('hide');
   }
 };
+
+Player.prototype.addDomino=function(addedDomino){
+  this.body.push(addedDomino);
+};
+
+
+var playerOne = new Player({
+  name: "playerOne",
+});
+
+var playerTwo= new Player({
+  name: "playerTwo",
+});

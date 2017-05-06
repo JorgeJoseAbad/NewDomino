@@ -10,22 +10,16 @@
 
     }
 
-    var gameBoard = new Board({
-      rows: 30,
-      columns: 30,
-      dominoPlayed: []
-    });
 
-    /*((this.domino[0].numberOne===selectedDomino.numberOne)&&this.domino[0].numberOneOpen)||
-    ((this.domino[0].numberOne===selectedDomino.numberTwo)&&this.domino[0].numberOneOpen)||
-    ((this.domino[0].numberTwo===selectedDomino.numberOne)&&this.domino[0].numberTwoOpen)||
-    ((this.domino[0].numberTwo===selectedDomino.numberTwo)&&this.domino[0].numberTwoOpen)
-    )*/
 
-    Board.prototype.movToBegin=function(selectedDomino){
-      console.log(this);
-      debugger;
+
+  Board.prototype.movToBegin=function(selectedDomino){
+    console.log("en movToBegin");
+    console.log(selectedDomino);
+
+      //debugger;
       switch  (this.domino[0].numberOneOpen||this.domino[0].numberTwoOpen)
+
 
             {
 
@@ -44,25 +38,25 @@
                     selectedDomino.numberOneOpen=false;
                     this.domino.unshift(selectedDomino);
                 break;
-              case this.domino[0].numberTwoOpen&&(this.domino[0].numberTwo===selectedDomino.numberOne):
+              case this.domino[0].numberTwoOpen&&(this.domino[0].numberTwo===selectedDomino.numberTwo):
                     this.domino[0].numberTwoOpen=false;
                     selectedDomino.numberTwoOpen=false;
                     this.domino.unshift(selectedDomino);
                 break;
-              default: console.log("movimiento erroneo");
+              default: {
+                //debugger;
+                console.log("movimiento erroneo");
+                return false;
+              }
 
             }
+            return true;
 };
 
 
-/*((this.domino[last].numberOne===selectedDomino.numberOne)&&this.domino[last].numberOneOpen)||
-((this.domino[last].numberOne===selectedDomino.numberTwo)&&this.domino[last].numberOneOpen)||
-((this.domino[last].numberTwo===selectedDomino.numberOne)&&this.domino[last].numberTwoOpen)||
-((this.domino[last].numberTwo===selectedDomino.numberTwo)&&this.domino[last].numberTwoOpen)
-*/
 
 Board.prototype.movToEnd=function(selectedDomino){
-  console.log(this.domino);
+    console.log(this.domino);
     var last;
     last=this.domino.length-1;
     console.log("last: "+last);
@@ -72,22 +66,22 @@ Board.prototype.movToEnd=function(selectedDomino){
             this.domino[last].numberOneOpen||this.domino[last].numberTwoOpen //se puede insertar otra ficha
             )
           {
-            case this.domino[last].numberOne===selectedDomino.numberOne:
+            case this.domino[last].numberOneOpen&&(this.domino[last].numberOne===selectedDomino.numberOne):
               this.domino[last].numberOneOpen=false;
               selectedDomino.numberOneOpen=false;
               this.domino.push(selectedDomino);
             break;
-            case this.domino[last].numberOne===selectedDomino.numberTwo:
+            case this.domino[last].numberOneOpen&&(this.domino[last].numberOne===selectedDomino.numberTwo):
               this.domino[last].numberOneOpen=false;
               selectedDomino.numberTwoOpen=false;
               this.domino.push(selectedDomino);
             break;
-            case this.domino[last].numberTwo===selectedDomino.numberOne:
+            case this.domino[last].numberTwoOpen&&(this.domino[last].numberTwo===selectedDomino.numberOne):
               this.domino[last].numberTwoOpen=false;
               selectedDomino.numberOneOpen=false;
               this.domino.push(selectedDomino);
             break;
-            case this.domino[last].numberTwo===selectedDomino.numberTwo:
+            case this.domino[last].numberTwoOpen&&(this.domino[last].numberTwo===selectedDomino.numberTwo):
               this.domino[last].numberTwoOpen=false;
               selectedDomino.numberTwoOpen=false;
               this.domino.push(selectedDomino);
@@ -111,11 +105,15 @@ Board.prototype.movToEnd=function(selectedDomino){
 
 //funcions for test
     Board.prototype.insertPushDomino=function(domino){
-      var snake;
+
+        this.domino.push(domino);
+        console.log(this.domino);
+        return true;
+      /*var snake;
       snake=this.domino.push(domino);
       console.log('snake');
       console.log(snake);
-      console.log('snake2');
+      console.log('snake2');*/
     };
 
 //function for test
@@ -125,3 +123,9 @@ Board.prototype.movToEnd=function(selectedDomino){
       console.log('snake');
       console.log(snake);
     };
+
+  var gameBoard = new Board({
+    rows: 30,
+    columns: 30,
+    dominoPlayed: []
+  });
