@@ -1,5 +1,6 @@
 'esversion: 6';
 
+
 //$(document).ready(function(){
 
     function DominoGame(options){
@@ -13,21 +14,14 @@
       this.dominoBox.print();
 
       this.startGame();
-      this.selecDominoPlayerOne();
-      this.selecDominoPlayerTwo();
-      this.placeDominoInBoard();
+      //this.selecDominoPlayerOne();
+      //this.selecDominoPlayerTwo();
+      //this.placeDominoInBoard();
 
 
     }
 
 
-
-
-
-
-    //dominoGame.dominoBox.print();
-    //dominoGame.dominoBox.shuffle();
-    //dominoGame.dominoBox.print();
 
 DominoGame.prototype.startGame=function(){
     //start buttton to begin the game...
@@ -40,16 +34,16 @@ DominoGame.prototype.startGame=function(){
       if (dominoGame.playerOne.searchDomino(6,6)){
         dominoGame.playerOne.turn=true;
         dominoGame.playerOne.showPlayerDominoes();
-        //selecDominoPlayerOne();
+        dominoGame.selecDominoPlayerOne();
       } else if (dominoGame.playerTwo.searchDomino(6,6)){
               dominoGame.playerTwo.turn=true;
               dominoGame.playerTwo.showPlayerDominoes();
-              //dominoGame.playerTwo.selecDominoPlayerTwo();
+              dominoGame.selecDominoPlayerTwo();
               } else {
                   console.log("no hay seis doble");
                   dominoGame.playerOne.turn=true;
                   dominoGame.playerOne.showPlayerDominoes();
-                  //dominoGame.playerOne.selecDominoPlayerOne();
+                  dominoGame.selecDominoPlayerOne();
                   }
      dominoGame.gameBoard.drawBoard();
 
@@ -58,73 +52,179 @@ DominoGame.prototype.startGame=function(){
 };
 
 
-var numberSelectedDomino;
-var selectedDomino;
+
+
 DominoGame.prototype.selecDominoPlayerOne=function(){
 
+  console.log("entraos en selecDominoPlayerOne");
 
-    $(document).on('click', ".dominoplayerone.filled", function() {
-
+    $('#dominoesplayerone').on('click', ".dominoplayerone.filled", function() {
+      var selectedDomino;
+      var numberSelectedDomino;
       numberSelectedDomino=$(this).attr('picknumber');
       console.log(numberSelectedDomino);
-      dominoGame.playerOne.removePlayerDominoes();
+      console.log("------------------------");
+      console.log(selectedDomino);
       selectedDomino=dominoGame.playerOne.body.splice(numberSelectedDomino,1)[0];
       console.log(selectedDomino);
-      dominoGame.playerOne.showPlayerDominoes();
-      dominoGame.playerOne.changeTurn();
-      dominoGame.playerOne.hideDominoes();
-      dominoGame.playerTwo.showDominoes();
-      dominoGame.playerTwo.removePlayerDominoes();
-      dominoGame.playerTwo.showPlayerDominoes();
-
-
-    });
-};
-
-DominoGame.prototype.selecDominoPlayerTwo=function(){
-    $(document).on('click', ".dominoplayertwo.filled", function() {
-
-      numberSelectedDomino=$(this).attr('picknumber');
-      console.log(numberSelectedDomino);
-      dominoGame.playerTwo.removePlayerDominoes();
-      selectedDomino=dominoGame.playerTwo.body.splice(numberSelectedDomino,1)[0];
-      console.log(selectedDomino);
-      dominoGame.playerTwo.showPlayerDominoes();
-      dominoGame.playerTwo.changeTurn();
-      dominoGame.playerTwo.hideDominoes();
-      dominoGame.playerOne.showDominoes();
+      //console.log(selectedDomino);
       dominoGame.playerOne.removePlayerDominoes();
       dominoGame.playerOne.showPlayerDominoes();
 
+      dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerOne.name);
+
 
     });
+  console.log("estamos esperando click en selecDominoPlayerOne");
+};
+
+DominoGame.prototype.movDominoPlayerOneValid=function(){
+        console.log("entramos en movDominoPlayerOneValid");
+
+        $('.boardtable').off("click",'.cell-board');
+        dominoGame.playerOne.changeTurn();
+        dominoGame.playerOne.hideDominoes();
+        dominoGame.playerTwo.showDominoes();
+        dominoGame.playerTwo.removePlayerDominoes();
+        dominoGame.playerTwo.showPlayerDominoes();
+        dominoGame.selecDominoPlayerTwo();
+};
+
+DominoGame.prototype.repeatPlayerOneMov=function(){
+  $('.boardtable').off("click",'.cell-board');
+  dominoGame.playerOne.removePlayerDominoes();
+  dominoGame.playerOne.showPlayerDominoes();
+  dominoGame.selecDominoPlayerOne();
+};
+
+
+DominoGame.prototype.selecDominoPlayerTwo=function(){
+
+  console.log("entraos en selecDominoPlayerTwo");
+    $('#dominoesplayertwo').on('click', ".dominoplayertwo.filled", function() {
+      var selectedDomino;
+      var numberSelectedDomino;
+      numberSelectedDomino=$(this).attr('picknumber');
+      console.log(numberSelectedDomino);
+      console.log("------------------------");
+      console.log(selectedDomino);
+      selectedDomino=dominoGame.playerTwo.body.splice(numberSelectedDomino,1)[0];
+      console.log(selectedDomino);
+      //console.log(selectedDomino);
+      dominoGame.playerTwo.removePlayerDominoes();
+      dominoGame.playerTwo.showPlayerDominoes();
+
+      dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerTwo.name);
+
+
+    });
+    console.log("estamos esperando click en selecDominoPlayerTwo");
 
   }; //selectedDomino function
 
-DominoGame.prototype.placeDominoInBoard=function(){
-    $(document).on('click','.cell-board',function(){
+
+  DominoGame.prototype.movDominoPlayerTwoValid=function(){
+    console.log("entramos en movDominoPlayerTwoValid");
+    $('.boardtable').off("click",'.cell-board');
+    dominoGame.playerTwo.changeTurn();
+    dominoGame.playerTwo.hideDominoes();
+    dominoGame.playerOne.showDominoes();
+    dominoGame.playerOne.removePlayerDominoes();
+    dominoGame.playerOne.showPlayerDominoes();
+    dominoGame.selecDominoPlayerOne();
+  };
+
+  DominoGame.prototype.repeatPlayerTwoMov=function(){
+    $('.boardtable').off("click",'.cell-board');
+    dominoGame.playerTwo.removePlayerDominoes();
+    dominoGame.playerTwo.showPlayerDominoes();
+    dominoGame.selecDominoPlayerTwo();
+  };
+
+
+
+DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
+  console.log("entramos en placeDominoInBoard");
+  console.log(domSelected);
+  console.log(name);
+  var dataRow;
+  var dataCol;
+
+    $('.boardtable').on('click','.cell-board',function(){
       console.log("a ver si hago push con");
-      console.log(selectedDomino);
+      console.log(domSelected);
       console.log(dominoGame.gameBoard.domino[0]);
       if (dominoGame.gameBoard.domino[0]===undefined) {
-          dominoGame.gameBoard.insertPushDomino(selectedDomino); //para el primer movimento
+          dominoGame.gameBoard.insertPushDomino(domSelected); //para el primer movimento
           console.log(this); //this is the cell-board where i clicked
+          dataRow=parseInt($(this).attr('data-row'));
+          dataCol=parseInt($(this).attr('data-col'));
+          console.log(dataRow,dataCol);
+          console.log(dataRow+1,dataCol+1);
           $(this).addClass('filled');
-          $(this).html(selectedDomino.numberOne);
-
-        } else {
-          //dominoGame.gameBoard.movToEnd(selectedDomino); //tengo que buscar la forma de emplar
-          dominoGame.gameBoard.movToBegin(selectedDomino); //una u otra
-          console.log(this); //this is the cell-board where i clicked
-          $(this).addClass('filled');
-          $(this).html(selectedDomino.numberOne);
-
+          $(this).html(domSelected.numberOne);
+          $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
+          $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+          if (name==='playerOne') {
+              console.log("playerOne");
+              dominoGame.movDominoPlayerOneValid();
+              $('#dominoesplayerone').off();
+            } else if (name==='playerTwo'){
+              console.log('playerTwo');
+              dominoGame.movDominoPlayerTwoValid();
+              $('#dominoesplayertwo').off();
           }
 
-      console.log(dominoGame.gameBoard.domino);
 
-    });
-};
+        } else if ((dominoGame.gameBoard.domino[0]!==undefined)&&
+                    (dominoGame.gameBoard.movToEnd(domSelected)||
+                    dominoGame.gameBoard.movToBegin(domSelected))) {
+            console.log(this); //this is the cell-board where i clicked
+            dataRow=parseInt($(this).attr('data-row'));
+            dataCol=parseInt($(this).attr('data-col'));
+            console.log(dataRow,dataCol);
+            console.log(dataRow+1,dataCol+1);
+            $(this).addClass('filled');
+            $(this).html(domSelected.numberOne);
+            $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
+            $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+            if (name==='playerOne') {
+                console.log("playerOne");
+                dominoGame.movDominoPlayerOneValid();
+                $('#dominoesplayerone').off();
+              } else if (name==='playerTwo'){
+                console.log('playerTwo');
+                dominoGame.movDominoPlayerTwoValid();
+                $('#dominoesplayertwo').off();
+              }
+            } else {
+                    console.log("MOVIMIENTO ILEGAL");
+                    if (name==='playerOne'){
+                      console.log(name);
+                      dominoGame.playerOne.addDomino(domSelected);
+                      $('#dominoesplayerone').off();
+                      dominoGame.repeatPlayerOneMov();
+
+                    } else if (name==='playerTwo'){
+                      console.log(name);
+                      dominoGame.playerTwo.addDomino(domSelected);
+                      $('#dominoesplayertwo').off();
+                      dominoGame.repeatPlayerTwoMov();
+
+                    }
+                  }
+                  console.log(dominoGame.gameBoard.domino);
+            }); //onclic event
+            console.log("estamos esperando click en placeDominoInBoard");
+    }; //function placeDominoInBoard
+
+
+
+
+
+
+
+
 
 
     var dominoGame = new DominoGame({
@@ -133,40 +233,3 @@ DominoGame.prototype.placeDominoInBoard=function(){
       dominoBox:dominoBox,
       gameBoard:gameBoard,
     });
-
-    //code to give initial turn
-    /*
-    if (dominoGame.playerOne.searchDomino(6,6)){
-      dominoGame.playerOne.turn=true;
-    } else if (dominoGame.playerTwo.searchDomino(6,6)){
-            dominoGame.playerTwo.turn=true;
-            } else {
-                console.log("no hay seis doble");
-                dominoGame.playerOne.turn=true;
-                }
-    */
-
-
-    //this code only for test purposes
-    /*
-    var sixSix;
-    if (dominoGame.playerOne.turn&&dominoGame.playerOne.searchDomino(6,6)) {
-      sixSix=dominoGame.playerOne.playerPickDomino(6,6);
-      console.log("playerOne: ");
-      console.log(sixSix);
-    } else if (dominoGame.playerOne.turn&&!dominoGame.playerOne.searchDomino(6,6)){
-      sixSix=dominoGame.playerOne.playerPickDomino();
-      console.log("playerOne: ");
-      console.log(sixSix);
-    } else if (dominoGame.playerTwo.turn){
-      sixSix=dominoGame.playerTwo.playerPickDomino(6,6);
-      console.log("playerTwo: ");
-      console.log(sixSix);
-    }
-
-    var nextDomino;
-    nextDomino=dominoGame.playerTwo.playerPickDomino(6,0)||dominoGame.playerTwo.playerPickDomino(6,1);
-    console.log("nextDomino");
-    console.log(nextDomino);
-    */
-//});

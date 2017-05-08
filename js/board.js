@@ -45,7 +45,7 @@
                 break;
               default: {
                 //debugger;
-                console.log("movimiento erroneo");
+                console.log("movimiento erroneo por alante");
                 return false;
               }
 
@@ -86,9 +86,15 @@ Board.prototype.movToEnd=function(selectedDomino){
               selectedDomino.numberTwoOpen=false;
               this.domino.push(selectedDomino);
             break;
-            default:
+            default:{
+              console.log("movimiento erroneo por alante");
+              return false;
+            }
           }
+          return true;
 };
+
+
 
     Board.prototype.drawBoard=function(){
 
