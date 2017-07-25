@@ -100,7 +100,7 @@ DominoGame.prototype.repeatPlayerOneMov=function(){
 
 DominoGame.prototype.selecDominoPlayerTwo=function(){
 
-  console.log("entraos en selecDominoPlayerTwo");
+  console.log("entramos en selecDominoPlayerTwo");
     $('#dominoesplayertwo').on('click', ".dominoplayertwo.filled", function() {
       var selectedDomino;
       var numberSelectedDomino;
@@ -177,15 +177,21 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
 
 
         } else if ((dominoGame.gameBoard.domino[0]!==undefined)&&
+                    dominoGame.gameBoard.graphicOk(this,domSelected)&&
                     (dominoGame.gameBoard.movToEnd(domSelected)||
-                    dominoGame.gameBoard.movToBegin(domSelected))) {
+                    dominoGame.gameBoard.movToBegin(domSelected))
+                    ) {
             console.log(this); //this is the cell-board where i clicked
+
             dataRow=parseInt($(this).attr('data-row'));
             dataCol=parseInt($(this).attr('data-col'));
             console.log(dataRow,dataCol);
             console.log(dataRow+1,dataCol+1);
             $(this).addClass('filled');
             $(this).html(domSelected.numberOne);
+            //prueba
+            //dominoGame.gameBoard.graphicOk(this,domSelected);
+            //prueba
             $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
             $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
             if (name==='playerOne') {

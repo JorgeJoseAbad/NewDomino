@@ -12,6 +12,40 @@
 
 
 
+//funcion para asegurar movimiento graficamente correcto
+Board.prototype.graphicOk=function(boardPlace,newDom){
+  console.log('En function board.prototype.graphicOK');
+  console.log(boardPlace);
+  thisdataRow=parseInt($(boardPlace).attr('data-row'));
+  thisdataCol=parseInt($(boardPlace).attr('data-col'));
+  console.log(thisdataRow-1,thisdataCol);
+  console.log(thisdataRow,thisdataCol-1);
+  console.log(thisdataRow,thisdataCol+1);
+  console.log(thisdataRow+1,thisdataCol+1);
+  console.log(thisdataRow-1,thisdataCol+1);
+  console.log(thisdataRow+2,thisdataCol);
+  console.log($('div[data-row="'+(thisdataRow)+'"][data-col="'+thisdataCol+'"]').html());
+  console.log(newDom.numberOne);
+  console.log(newDom.numberTwo);
+
+  if ( ((($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html()||
+      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html()||
+      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html())==
+          newDom.numberOne))||
+      ((($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html()||
+        $('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html()||
+        $('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html())==
+          newDom.numberTwo)) )
+      {
+     console.log ('movimiento correcto');
+     return true;
+   } else {
+     console.log('mal movimiento o mal detectado');
+     return false;
+   }
+};
+
+
 
   Board.prototype.movToBegin=function(selectedDomino){
     console.log("en movToBegin");
@@ -45,7 +79,7 @@
                 break;
               default: {
                 //debugger;
-                console.log("movimiento erroneo por alante");
+                console.log("movimiento erroneo por alante!!!!!!");
                 return false;
               }
 
@@ -87,7 +121,7 @@ Board.prototype.movToEnd=function(selectedDomino){
               this.domino.push(selectedDomino);
             break;
             default:{
-              console.log("movimiento erroneo por alante");
+              console.log("movimiento erroneo por detrás!!!!!!");
               return false;
             }
           }
