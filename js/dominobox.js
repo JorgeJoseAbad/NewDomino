@@ -92,16 +92,16 @@
       });
     };
 
-
+    DominoBox.prototype.getDomino= function(){
+      return this.body.shift();
+    };
 
     var dominoBox = new DominoBox();
 
 
     //functions not yet implemented
 
-    DominoBox.prototype.getDomino= function(){
-      this.body.shift();
-    };
+
 
 
     DominoBox.prototype.letDomino = function () {

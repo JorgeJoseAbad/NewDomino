@@ -14,6 +14,7 @@
       this.dominoBox.print();
 
       this.startGame();
+      this.pickNewDomino();
       //this.selecDominoPlayerOne();
       //this.selecDominoPlayerTwo();
       //this.placeDominoInBoard();
@@ -21,6 +22,33 @@
 
     }
 
+    //function to pick a player a new domino.
+DominoGame.prototype.pickNewDomino=function(){
+    var newDomino;
+
+    $("button.picknewdomino").click(function(){
+      console.log('prueba');
+      newDomino=dominoBox.getDomino();
+      console.log(newDomino);
+      if (dominoGame.playerOne.turn===true) {
+        console.log('turno en player1');
+        dominoGame.playerOne.body.push(newDomino);
+
+        dominoGame.playerOne.removePlayerDominoes();
+        dominoGame.playerOne.showPlayerDominoes();
+
+
+      } else if (dominoGame.playerTwo.turn===true){
+        console.log('turno en player2');
+        dominoGame.playerTwo.body.push(newDomino);
+        dominoGame.playerTwo.removePlayerDominoes();
+        dominoGame.playerTwo.showPlayerDominoes();
+
+
+      }
+
+  });
+};
 
 
 DominoGame.prototype.startGame=function(){
@@ -223,7 +251,6 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
             }); //onclic event
             console.log("estamos esperando click en placeDominoInBoard");
     }; //function placeDominoInBoard
-
 
 
 

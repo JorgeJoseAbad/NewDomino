@@ -11,7 +11,6 @@
     }
 
 
-
 //funcion para asegurar movimiento graficamente correcto
 Board.prototype.graphicOk=function(boardPlace,newDom){
   console.log('En function board.prototype.graphicOK');
