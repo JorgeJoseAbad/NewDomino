@@ -93,7 +93,8 @@
     };
 
     DominoBox.prototype.getDomino= function(){
-      return this.body.shift();
+      if (this.body.length===0) return null;
+      else return this.body.shift();
     };
 
     var dominoBox = new DominoBox();

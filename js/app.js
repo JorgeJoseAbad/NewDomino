@@ -22,13 +22,33 @@
 
     }
 
-    //function to pick a player a new domino.
+//gameOver without winner (lack of dominoes)
+DominoGame.prototype.endgame=function(){
+  document.getElementById("gameover").innerHTML='no tittles, END OF GAME';
+};
+
+// gameOver with winner.
+DominoGame.prototype.gameOver=function(player){
+  var winner;
+  if (player.body.length===0){
+    console.log(player.name+'is winner!!!!!!!!!');
+    winner=player.name;
+    document.getElementById("gameover").innerHTML=winner +' is the winner; GAME OVER';
+    }
+  else {
+    console.log('game again');
+    }
+
+};
+
+    //function to give a player a new domino from the box.
 DominoGame.prototype.pickNewDomino=function(){
     var newDomino;
 
     $("button.picknewdomino").click(function(){
       console.log('prueba');
       newDomino=dominoBox.getDomino();
+      if (newDomino===null) dominoGame.endgame();
       console.log(newDomino);
       if (dominoGame.playerOne.turn===true) {
         console.log('turno en player1');
@@ -194,12 +214,14 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
           $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
           $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
           if (name==='playerOne') {
-              console.log("playerOne");
+              console.log(playerOne.name);
               dominoGame.movDominoPlayerOneValid();
+
               $('#dominoesplayerone').off();
             } else if (name==='playerTwo'){
-              console.log('playerTwo');
+              console.log(playerTwo.name);
               dominoGame.movDominoPlayerTwoValid();
+
               $('#dominoesplayertwo').off();
           }
 
@@ -210,25 +232,23 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
                     dominoGame.gameBoard.movToBegin(domSelected))
                     ) {
             console.log(this); //this is the cell-board where i clicked
-
             dataRow=parseInt($(this).attr('data-row'));
             dataCol=parseInt($(this).attr('data-col'));
             console.log(dataRow,dataCol);
             console.log(dataRow+1,dataCol+1);
             $(this).addClass('filled');
             $(this).html(domSelected.numberOne);
-            //prueba
-            //dominoGame.gameBoard.graphicOk(this,domSelected);
-            //prueba
             $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
             $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
             if (name==='playerOne') {
-                console.log("playerOne");
+                console.log(playerOne.name);
                 dominoGame.movDominoPlayerOneValid();
+                dominoGame.gameOver(playerOne);
                 $('#dominoesplayerone').off();
               } else if (name==='playerTwo'){
-                console.log('playerTwo');
+                console.log(playerTwo.name);
                 dominoGame.movDominoPlayerTwoValid();
+                dominoGame.gameOver(playerTwo);
                 $('#dominoesplayertwo').off();
               }
             } else {
