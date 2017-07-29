@@ -12,9 +12,10 @@
 
 
 //funcion para asegurar movimiento graficamente correcto
-Board.prototype.graphicOk=function(boardPlace,newDom){
+Board.prototype.graphicOk=function(boardPlace,newDom,snakeDom){
   console.log('En function board.prototype.graphicOK');
   console.log(boardPlace);
+  console.log(snakeDom);
   thisdataRow=parseInt($(boardPlace).attr('data-row'));
   thisdataCol=parseInt($(boardPlace).attr('data-col'));
   console.log(thisdataRow-1,thisdataCol);
@@ -24,17 +25,21 @@ Board.prototype.graphicOk=function(boardPlace,newDom){
   console.log(thisdataRow-1,thisdataCol+1);
   console.log(thisdataRow+2,thisdataCol);
   console.log($('div[data-row="'+(thisdataRow)+'"][data-col="'+thisdataCol+'"]').html());
+console.log("DATOS BASICOS");
   console.log(newDom.numberOne);
   console.log(newDom.numberTwo);
-
-  if ( ((($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html()||
-      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html()||
-      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html())==
-          newDom.numberOne))||
-      ((($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html()||
-        $('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html()||
-        $('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html())==
-          newDom.numberTwo)) )
+  console.log(snakeDom);
+  //verify begin mov to begin
+  if (
+    (($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html()==newDom.numberOne||
+      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html()==newDom.numberOne||
+      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html()==newDom.numberOne)&&
+          (newDom.numberOne==snakeDom.numberOne||newDom.numberOne==snakeDom.numberTwo))||
+      (($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html()==newDom.numberTwo||
+        $('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html()==newDom.numberTwo||
+        $('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html()==newDom.numberTwo)&&
+          (newDom.numberTwo==snakeDom.numberOne||newDom.numberTwo==snakeDom.numberTwo))
+        )
       {
      console.log ('movimiento correcto');
      return true;

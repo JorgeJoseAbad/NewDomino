@@ -197,6 +197,7 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
   console.log(name);
   var dataRow;
   var dataCol;
+  var end=dominoGame.gameBoard.domino.length-1;
 
     $('.boardtable').on('click','.cell-board',function(){
       console.log("a ver si hago push con");
@@ -216,22 +217,22 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
           if (name==='playerOne') {
               console.log(playerOne.name);
               dominoGame.movDominoPlayerOneValid();
-
               $('#dominoesplayerone').off();
             } else if (name==='playerTwo'){
               console.log(playerTwo.name);
               dominoGame.movDominoPlayerTwoValid();
-
               $('#dominoesplayertwo').off();
           }
 
 
-        } else if ((dominoGame.gameBoard.domino[0]!==undefined)&&
-                    dominoGame.gameBoard.graphicOk(this,domSelected)&&
-                    (dominoGame.gameBoard.movToEnd(domSelected)||
-                    dominoGame.gameBoard.movToBegin(domSelected))
-                    ) {
+        } else if (
+                    ((dominoGame.gameBoard.graphicOk(this,domSelected,dominoGame.gameBoard.domino[0]))&&
+                    (dominoGame.gameBoard.movToBegin(domSelected)))||
+                    ((dominoGame.gameBoard.graphicOk(this,domSelected,dominoGame.gameBoard.domino[end]))&&
+                    (dominoGame.gameBoard.movToEnd(domSelected)))
+                  ) {
             console.log(this); //this is the cell-board where i clicked
+
             dataRow=parseInt($(this).attr('data-row'));
             dataCol=parseInt($(this).attr('data-col'));
             console.log(dataRow,dataCol);
@@ -271,12 +272,6 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
             }); //onclic event
             console.log("estamos esperando click en placeDominoInBoard");
     }; //function placeDominoInBoard
-
-
-
-
-
-
 
 
 
