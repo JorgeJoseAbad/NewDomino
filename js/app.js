@@ -72,6 +72,10 @@ DominoGame.prototype.pickNewDomino=function(){
 
 
 DominoGame.prototype.startGame=function(){
+
+    //update players name
+    document.getElementsByClassName("nameplayer")[0].innerHTML=this.playerOne.name;
+    document.getElementsByClassName("nameplayer")[1].innerHTML=this.playerTwo.name;
     //start buttton to begin the game...
     $("button.startgame").click(function(){
 

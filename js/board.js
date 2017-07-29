@@ -31,14 +31,14 @@ console.log("DATOS BASICOS");
   console.log(snakeDom);
   //verify begin mov to begin
   if (
-    (($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html()==newDom.numberOne||
-      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html()==newDom.numberOne||
-      $('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html()==newDom.numberOne)&&
-          (newDom.numberOne==snakeDom.numberOne||newDom.numberOne==snakeDom.numberTwo))||
-      (($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html()==newDom.numberTwo||
-        $('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html()==newDom.numberTwo||
-        $('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html()==newDom.numberTwo)&&
-          (newDom.numberTwo==snakeDom.numberOne||newDom.numberTwo==snakeDom.numberTwo))
+    ((parseInt($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html())===newDom.numberOne||
+      parseInt($('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html())===newDom.numberOne||
+      parseInt($('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html())===newDom.numberOne)&&
+          (newDom.numberOne===snakeDom.numberOne||newDom.numberOne===snakeDom.numberTwo))||
+      ((parseInt($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html())===newDom.numberTwo||
+        parseInt($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html())===newDom.numberTwo||
+        parseInt($('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html())===newDom.numberTwo)&&
+          (newDom.numberTwo===snakeDom.numberOne||newDom.numberTwo===snakeDom.numberTwo))
         )
       {
      console.log ('movimiento correcto');
