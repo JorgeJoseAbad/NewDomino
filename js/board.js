@@ -25,7 +25,7 @@ Board.prototype.graphicOk=function(boardPlace,newDom,snakeDom){
   console.log(thisdataRow-1,thisdataCol+1);
   console.log(thisdataRow+2,thisdataCol);
   console.log($('div[data-row="'+(thisdataRow)+'"][data-col="'+thisdataCol+'"]').html());
-console.log("DATOS BASICOS");
+ console.log("DATOS BASICOS");
   console.log(newDom.numberOne);
   console.log(newDom.numberTwo);
   console.log(snakeDom);
@@ -34,11 +34,13 @@ console.log("DATOS BASICOS");
     ((parseInt($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html())===newDom.numberOne||
       parseInt($('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol-1)+'"]').html())===newDom.numberOne||
       parseInt($('div[data-row="'+thisdataRow+'"][data-col="'+(thisdataCol+1)+'"]').html())===newDom.numberOne)&&
-          (newDom.numberOne===snakeDom.numberOne||newDom.numberOne===snakeDom.numberTwo))||
+          (newDom.numberOne===snakeDom.numberOne&&snakeDom.numberOneOpen||
+            newDom.numberOne===snakeDom.numberTwo&&snakeDom.numberTwoOpen))||
       ((parseInt($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol-1)+'"]').html())===newDom.numberTwo||
         parseInt($('div[data-row="'+(thisdataRow+1)+'"][data-col="'+(thisdataCol+1)+'"]').html())===newDom.numberTwo||
         parseInt($('div[data-row="'+(thisdataRow+2)+'"][data-col="'+thisdataCol+'"]').html())===newDom.numberTwo)&&
-          (newDom.numberTwo===snakeDom.numberOne||newDom.numberTwo===snakeDom.numberTwo))
+          (newDom.numberTwo===snakeDom.numberOne&&snakeDom.numberOneOpen||
+            newDom.numberTwo===snakeDom.numberTwo&&snakeDom.numberTwoOpen))
         )
       {
      console.log ('movimiento correcto');

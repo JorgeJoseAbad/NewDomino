@@ -189,7 +189,38 @@ DominoGame.prototype.selecDominoPlayerTwo=function(){
     dominoGame.selecDominoPlayerTwo();
   };
 
+DominoGame.prototype.drawNumbersInBoard=function(position,number){
+  $(position).addClass('filled');
+  $(position).html(number);
+  $(position).append("<img>");
+  switch (number) {
+    case 0:
+      $(position).children("img").attr('src',"./img/CERO.png");
+      break;
+    case 1:
+      $(position).children("img").attr('src',"./img/UNO.png");
+      break;
+    case 2:
+      $(position).children("img").attr('src',"./img/DOS.png");
+      break;
+    case 3:
+      $(position).children("img").attr('src',"./img/TRES.png");
+      break;
+    case 4:
+      $(position).children("img").attr('src',"./img/CUATRO.png");
+      break;
+    case 5:
+      $(position).children("img").attr('src',"./img/CINCO.png");
+      break;
+    case 6:
+      $(position).children("img").attr('src',"./img/SEIS.png");
+      break;
+    default:
 
+  }
+
+
+};
 
 DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
   console.log("entramos en placeDominoInBoard");
@@ -210,10 +241,12 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
           dataCol=parseInt($(this).attr('data-col'));
           console.log(dataRow,dataCol);
           console.log(dataRow+1,dataCol+1);
-          $(this).addClass('filled');
-          $(this).html(domSelected.numberOne);
-          $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
-          $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+          //$(this).addClass('filled');
+          //$(this).html(domSelected.numberOne);
+          dominoGame.drawNumbersInBoard(this,domSelected.numberOne);
+          //$('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
+          //$('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+          dominoGame.drawNumbersInBoard('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]',domSelected.numberTwo);
           if (name==='playerOne') {
               console.log(playerOne.name);
               dominoGame.movDominoPlayerOneValid();
@@ -237,10 +270,12 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
             dataCol=parseInt($(this).attr('data-col'));
             console.log(dataRow,dataCol);
             console.log(dataRow+1,dataCol+1);
-            $(this).addClass('filled');
-            $(this).html(domSelected.numberOne);
-            $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
-            $('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+            //$(this).addClass('filled');
+            //$(this).html(domSelected.numberOne);
+            dominoGame.drawNumbersInBoard(this,domSelected.numberOne);
+            //$('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').addClass('filled');
+            //$('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]').html(domSelected.numberTwo);
+            dominoGame.drawNumbersInBoard('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]',domSelected.numberTwo);
             if (name==='playerOne') {
                 console.log(playerOne.name);
                 dominoGame.movDominoPlayerOneValid();
