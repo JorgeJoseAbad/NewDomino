@@ -24,7 +24,7 @@
 
 //gameOver without winner (lack of dominoes)
 DominoGame.prototype.endgame=function(){
-  document.getElementById("gameover").innerHTML='no tittles, END OF GAME';
+  document.getElementById("gamestate").innerHTML='no more dominoes in box, END OF GAME';
 };
 
 // gameOver with winner.
@@ -33,7 +33,7 @@ DominoGame.prototype.gameOver=function(player){
   if (player.body.length===0){
     console.log(player.name+'is winner!!!!!!!!!');
     winner=player.name;
-    document.getElementById("gameover").innerHTML=winner +' is the winner; GAME OVER';
+    document.getElementById("gamestate").innerHTML=winner +' is the winner; GAME OVER';
     }
   else {
     console.log('game again');
@@ -78,7 +78,7 @@ DominoGame.prototype.startGame=function(){
     document.getElementsByClassName("nameplayer")[1].innerHTML=this.playerTwo.name;
     //start buttton to begin the game...
     $("button.startgame").click(function(){
-
+      document.getElementById("gamestate").innerHTML='Game is running';
       console.log("You clicked the button!");
       dominoGame.playerOne.startPlayer(dominoGame.dominoBox);
       dominoGame.playerTwo.startPlayer(dominoGame.dominoBox);
@@ -119,10 +119,8 @@ DominoGame.prototype.selecDominoPlayerOne=function(){
       console.log(selectedDomino);
       selectedDomino=dominoGame.playerOne.body.splice(numberSelectedDomino,1)[0];
       console.log(selectedDomino);
-      //console.log(selectedDomino);
       dominoGame.playerOne.removePlayerDominoes();
       dominoGame.playerOne.showPlayerDominoes();
-
       dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerOne.name);
 
 
@@ -162,17 +160,15 @@ DominoGame.prototype.selecDominoPlayerTwo=function(){
       console.log(selectedDomino);
       selectedDomino=dominoGame.playerTwo.body.splice(numberSelectedDomino,1)[0];
       console.log(selectedDomino);
-      //console.log(selectedDomino);
       dominoGame.playerTwo.removePlayerDominoes();
       dominoGame.playerTwo.showPlayerDominoes();
-
       dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerTwo.name);
 
 
-    });
+    }); //end onclick event
     console.log("estamos esperando click en selecDominoPlayerTwo");
 
-  }; //selectedDomino function
+  }; // End selectedDomino function
 
 
   DominoGame.prototype.movDominoPlayerTwoValid=function(){
@@ -201,7 +197,7 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
   console.log(name);
   var dataRow;
   var dataCol;
-  var end=dominoGame.gameBoard.domino.length-1;
+  var end=dominoGame.gameBoard.domino.length-1; //index of last domino placed in board
 
     $('.boardtable').on('click','.cell-board',function(){
       console.log("a ver si hago push con");
@@ -273,9 +269,9 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
                     }
                   }
                   console.log(dominoGame.gameBoard.domino);
-            }); //onclic event
+            }); // end onclic event
             console.log("estamos esperando click en placeDominoInBoard");
-    }; //function placeDominoInBoard
+    }; //end function placeDominoInBoard
 
 
 

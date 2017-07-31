@@ -14,13 +14,13 @@
 
 
 
-    //funcion que retorna si existe una ficha del array del jugador, si se pasa sin numero a buscar
-    // retorna la primera ficha del array
+    //funcion que retorna si existe una ficha del array del jugador, buscando sus numeros.
+    //si se pasa sin numero a buscar retorna la primera ficha del array
     // he retirado los valores por defecto num1=10 y num2=20 que no se aceptan en
-    //ES5
+    //ES5 y busco null, esta función no se usa realmente
     Player.prototype.playerPickDomino=function(num1,num2){
 
-    if (num1===10&&num2===10) return this.body.splice(0,1)[0];
+    if (num1===null&&num2===null) return this.body.splice(0,1)[0];
     else{
         for (i=0;i<this.body.length;i++){
               if (((this.body[i].numberOne===num1) && (this.body[i].numberTwo===num2)) ||
