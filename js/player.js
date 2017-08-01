@@ -44,6 +44,36 @@
        return numbersDomino;
     };
 
+//function to show dominoes draw in hand
+Player.prototype.drawNumbersInHand=function(node,number){
+  $(node).append("<img>");
+  switch (number) {
+    case 0:
+      $(node).children("img").attr('src',"./img/CERO.png");
+      break;
+    case 1:
+      $(node).children("img").attr('src',"./img/UNO.png");
+      break;
+    case 2:
+      $(node).children("img").attr('src',"./img/DOS.png");
+      break;
+    case 3:
+      $(node).children("img").attr('src',"./img/TRES.png");
+      break;
+    case 4:
+      $(node).children("img").attr('src',"./img/CUATRO.png");
+      break;
+    case 5:
+      $(node).children("img").attr('src',"./img/CINCO.png");
+      break;
+    case 6:
+      $(node).children("img").attr('src',"./img/SEIS.png");
+      break;
+    default:
+
+  }
+
+};
 
     //funcion que MUESTRA VISUALMENTE las fichas de un jugador, su mano
     Player.prototype.showPlayerDominoes=function(){
@@ -70,7 +100,9 @@
           for (var i=0; i<this.body.length; i++){
               $('.dominoplayerone[picknumber='+i+']').addClass('filled');
               $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[0].innerHTML= this.body[i].numberOne;
+              playerOne.drawNumbersInHand($('.dominoplayerone.filled[picknumber="'+i+'"]')[0].childNodes[0],this.body[i].numberOne);
               $('.dominoplayerone[picknumber="'+i+'"]')[0].childNodes[1].innerHTML= this.body[i].numberTwo;
+              playerOne.drawNumbersInHand($('.dominoplayerone.filled[picknumber="'+i+'"]')[0].childNodes[1],this.body[i].numberTwo);
 
             }
         }
@@ -96,7 +128,9 @@
           for (var j=0; j<this.body.length; j++){
               $('.dominoplayertwo[picknumber='+j+']').addClass('filled');
               $('.dominoplayertwo.filled[picknumber="'+j+'"]')[0].childNodes[0].innerHTML= this.body[j].numberOne;
+              playerTwo.drawNumbersInHand($('.dominoplayertwo.filled[picknumber="'+j+'"]')[0].childNodes[0],this.body[j].numberOne);
               $('.dominoplayertwo.filled[picknumber="'+j+'"]')[0].childNodes[1].innerHTML= this.body[j].numberTwo;
+              playerTwo.drawNumbersInHand($('.dominoplayertwo.filled[picknumber="'+j+'"]')[0].childNodes[1],this.body[j].numberTwo);
 
             }
         }
