@@ -1,8 +1,6 @@
 'esversion: 6';
 
 
-//$(document).ready(function(){
-
     function DominoGame(options){
       this.playerOne=options.playerOne;
       this.playerTwo=options.playerTwo;
@@ -53,7 +51,6 @@ DominoGame.prototype.pickNewDomino=function(){
       if (dominoGame.playerOne.turn===true) {
         console.log('turno en player1');
         dominoGame.playerOne.body.push(newDomino);
-
         dominoGame.playerOne.removePlayerDominoes();
         dominoGame.playerOne.showPlayerDominoes();
 
@@ -123,7 +120,6 @@ DominoGame.prototype.selecDominoPlayerOne=function(){
       dominoGame.playerOne.showPlayerDominoes();
       dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerOne.name);
 
-
     });
   console.log("estamos esperando click en selecDominoPlayerOne");
 };
@@ -163,7 +159,6 @@ DominoGame.prototype.selecDominoPlayerTwo=function(){
       dominoGame.playerTwo.removePlayerDominoes();
       dominoGame.playerTwo.showPlayerDominoes();
       dominoGame.placeDominoInBoard(selectedDomino,dominoGame.playerTwo.name);
-
 
     }); //end onclick event
     console.log("estamos esperando click en selecDominoPlayerTwo");
@@ -218,7 +213,6 @@ DominoGame.prototype.drawNumbersInBoard=function(position,number){
     default:
 
   }
-
 
 };
 
