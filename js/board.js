@@ -171,7 +171,7 @@ Board.prototype.movToEnd=function(selectedDomino){
     };
 
   var gameBoard = new Board({
-    rows: 30,
+    rows: 20,
     columns: 30,
     dominoPlayed: []
   });

@@ -210,13 +210,23 @@ Player.prototype.addDomino=function(addedDomino){
 };
 
 
+
+var person1=function(){
+  return prompt("Please enter your name, playerOne");
+};
+
+var person2=function() {
+  return prompt("Please enter your name, playerTwo");
+};
+
 var playerOne = new Player({
-  name: "Pablo",
+  name: person1(),
 });
 
 var playerTwo= new Player({
-  name: "Pedro",
+  name: person2(),
 });
 // czmbio playerOne por Pablo
 // cambio playerTwo por Pedro
 // cambio 'playerOne' por playerOne.name and 'playerTwo.name'
+// introduzco nombres mediante prompt;
