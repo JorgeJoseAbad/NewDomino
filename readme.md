@@ -1,7 +1,9 @@
 # DominoGame
 
-## 28 Domines, two players.
+## 28 Domines, two players. Enter players' names first by prompt
 
-## Begin player with double 6, or player 1.
+## The player with the double six domino starts. If there are no double six, player 1 starts
 
-## Emascript 2015 (ES5)
+## Pick dominoes from player, and place it in board.
+
+## Emascript 2015 (ES5), jQuery.
