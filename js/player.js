@@ -80,7 +80,7 @@ Player.prototype.drawNumbersInHand=function(node,number){
 
     var columnsPlayerindex;
 
-    if (this.name==='playerOne'){
+    if (this.name===playerOne.name){
           for (columnsPlayerindex=0; columnsPlayerindex<this.body.length;
                                               columnsPlayerindex++){
             $('#dominoesplayerone').append($('<div>')
@@ -107,7 +107,7 @@ Player.prototype.drawNumbersInHand=function(node,number){
             }
         }
 
-    if (this.name==='playerTwo'){
+    if (this.name===playerTwo.name){
           for (columnsPlayerindex=0; columnsPlayerindex<this.body.length;
                                               columnsPlayerindex++){
 
@@ -164,11 +164,11 @@ Player.prototype.drawNumbersInHand=function(node,number){
     };
 
 Player.prototype.removePlayerDominoes=function(){
-  if (this.name==='playerOne'){
+  if (this.name===playerOne.name){
     console.log('intento quitar clases playerOne');
     $(".dominoplayerone.filled").remove();
   }
-  if (this.name==='playerTwo'){
+  if (this.name===playerTwo.name){
     console.log('intento quitar clases playerTwo');
     $(".dominoplayertwo.filled").remove();
   }
@@ -176,30 +176,30 @@ Player.prototype.removePlayerDominoes=function(){
 
 //recibe el jugador que tiene turno y lo cambia aun no probado
 Player.prototype.changeTurn=function(){
-  if (this.name==='playerOne'){
+  if (this.name===playerOne.name){
     this.turn=false;
     playerTwo.turn=true;
-  } else if (this.name==='playerTwo'){
+  } else if (this.name===playerTwo.name){
     this.turn=false;
     playerOne.turn=true;
   }
 };
 
 Player.prototype.hideDominoes=function(){
-  if (this.name==='playerOne'){
+  if (this.name===playerOne.name){
     console.log("intento quitar visibilidad player one");
     $('#dominoesplayerone').addClass('hide');
-  } else if (this.name==='playerTwo'){
+  } else if (this.name===playerTwo.name){
     console.log("intento quitar visibilidad player Two");
     $('#dominoesplayertwo').addClass('hide');
   }
 };
 
 Player.prototype.showDominoes=function(){
-  if (this.name==='playerOne'){
+  if (this.name===playerOne.name){
     console.log("intento dar visibilidad player one");
     $('#dominoesplayerone').removeClass('hide');
-  } else if (this.name==='playerTwo'){
+  } else if (this.name===playerTwo.name){
     console.log("intento dar visibilidad player two");
     $('#dominoesplayertwo').removeClass('hide');
   }
@@ -211,9 +211,12 @@ Player.prototype.addDomino=function(addedDomino){
 
 
 var playerOne = new Player({
-  name: "playerOne",
+  name: "Pablo",
 });
 
 var playerTwo= new Player({
-  name: "playerTwo",
+  name: "Pedro",
 });
+// czmbio playerOne por Pablo
+// cambio playerTwo por Pedro
+// cambio 'playerOne' por playerOne.name and 'playerTwo.name'

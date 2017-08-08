@@ -22,7 +22,7 @@
 
 //gameOver without winner (lack of dominoes)
 DominoGame.prototype.endgame=function(){
-  document.getElementById("gamestate").innerHTML='no more dominoes in box, END OF GAME';
+  document.getElementById("gamestate").innerHTML='No more dominoes in box, END OF GAME';
 };
 
 // gameOver with winner.
@@ -238,11 +238,11 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
 
           dominoGame.drawNumbersInBoard(this,domSelected.numberOne);
           dominoGame.drawNumbersInBoard('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]',domSelected.numberTwo);
-          if (name==='playerOne') {
+          if (name===playerOne.name) {
               console.log(playerOne.name);
               dominoGame.movDominoPlayerOneValid();
               $('#dominoesplayerone').off();
-            } else if (name==='playerTwo'){
+            } else if (name===playerTwo.name){
               console.log(playerTwo.name);
               dominoGame.movDominoPlayerTwoValid();
               $('#dominoesplayertwo').off();
@@ -263,12 +263,12 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
             console.log(dataRow+1,dataCol+1);
             dominoGame.drawNumbersInBoard(this,domSelected.numberOne);
             dominoGame.drawNumbersInBoard('div[data-row="'+(dataRow+1)+'"][data-col="'+dataCol+'"]',domSelected.numberTwo);
-            if (name==='playerOne') {
+            if (name===playerOne.name) {
                 console.log(playerOne.name);
                 dominoGame.movDominoPlayerOneValid();
                 dominoGame.gameOver(playerOne);
                 $('#dominoesplayerone').off();
-              } else if (name==='playerTwo'){
+              } else if (name===playerTwo.name){
                 console.log(playerTwo.name);
                 dominoGame.movDominoPlayerTwoValid();
                 dominoGame.gameOver(playerTwo);
@@ -276,13 +276,13 @@ DominoGame.prototype.placeDominoInBoard=function(domSelected,name){
               }
             } else {
                     console.log("MOVIMIENTO ILEGAL");
-                    if (name==='playerOne'){
+                    if (name===playerOne.name){
                       console.log(name);
                       dominoGame.playerOne.addDomino(domSelected);
                       $('#dominoesplayerone').off();
                       dominoGame.repeatPlayerOneMov();
 
-                    } else if (name==='playerTwo'){
+                    } else if (name===playerTwo.name){
                       console.log(name);
                       dominoGame.playerTwo.addDomino(domSelected);
                       $('#dominoesplayertwo').off();
