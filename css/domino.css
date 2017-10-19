@@ -16,6 +16,12 @@ body{
   background-color: #3367e0;
 }
 
+.firma{
+  color: navy;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .boardtable {
   height: 400px;
   margin: 20px auto;
@@ -140,16 +146,16 @@ body{
 #gamestate{
   position: relative;
   height: auto;
-  width: 300px;
+  width: 800px;
   border: 2px solid #17212e;
-  background-color: #707fa0;
+  background-color: #bcccf1;
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
-  text-align: center;
-  font-size: 30px;
+  text-align: justify;
+  font-size: 20px;
   font-weight: bolder;
-  color: #8bca12;
+  color: #395602;
 
 }
 

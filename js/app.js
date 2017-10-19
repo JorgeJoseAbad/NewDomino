@@ -68,7 +68,7 @@ DominoGame.prototype.startGame=function(){
     document.getElementsByClassName("nameplayer")[1].innerHTML=this.playerTwo.name;
     //start buttton to begin the game...
     $("button.startgame").click(function(){
-      document.getElementById("gamestate").innerHTML='Game is running';
+      document.getElementById("gamestate").innerHTML='Game is running, pick a domino and place it whith the mouse in the grey board, mouse points to number 1 (the upper) of domino. if the move is incorrect, the domino token returns to the player';
       dominoGame.playerOne.startPlayer(dominoGame.dominoBox);
       dominoGame.playerTwo.startPlayer(dominoGame.dominoBox);
       console.log(dominoGame.playerOne);

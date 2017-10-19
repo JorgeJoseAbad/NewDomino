@@ -202,11 +202,11 @@ Player.prototype.addDomino=function(addedDomino){
 
 // playerOne and playerTwo names by prompt
 var person1=function(){
-  return prompt("Please enter your name, playerOne");
+  return prompt("First, we enter names of players: please enter your name, player one");
 };
 
 var person2=function() {
-  return prompt("Please enter your name, playerTwo");
+  return prompt("Now please enter your name, player two");
 };
 
 var playerOne = new Player({
