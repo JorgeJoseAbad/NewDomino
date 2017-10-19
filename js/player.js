@@ -1,6 +1,3 @@
-'esversion: 6';
-
-
 
     function Player(options) {
       this.MAX_DOMINOES=8;
@@ -8,16 +5,13 @@
       this.turn= false;
       this.name=options.name;
 
-
-
     }
 
 
 
-    //funcion que retorna si existe una ficha del array del jugador, buscando sus numeros.
-    //si se pasa sin numero a buscar retorna la primera ficha del array
-    // he retirado los valores por defecto num1=10 y num2=20 que no se aceptan en
-    //ES5 y busco null, esta función no se usa realmente
+    //Function that returns if there is a tab of the player's matrix, looking for their numbers.
+    //If passed without number to search returns the first tab of the array
+    // This function is not actually used.
     Player.prototype.playerPickDomino=function(num1,num2){
 
     if (num1===null&&num2===null) return this.body.splice(0,1)[0];
@@ -26,17 +20,17 @@
               if (((this.body[i].numberOne===num1) && (this.body[i].numberTwo===num2)) ||
                     ((this.body[i].numberOne===num2) && (this.body[i].numberTwo===num1)))
                       return this.body.splice(i,1)[0];
-                      //acaba y devuelve la ficha buscada ojo que
-                      //splice devuelve un array
+                      //return domino
+
               }
             }
 
-        return undefined; //no lo ha encontrado
+        return undefined; //no domino
 
 
     };
 
-
+// Get a domino from hand of player.
     Player.prototype.getDominoNumber=function(number){
       var numbersDomino=[];
        numbersDomino.push(this.body[number].numberOne);
@@ -44,7 +38,7 @@
        return numbersDomino;
     };
 
-//function to show dominoes draw in hand
+//function to show dominoes draw  *.png in hand, graphic.
 Player.prototype.drawNumbersInHand=function(node,number){
   $(node).append("<img>");
   switch (number) {
@@ -75,7 +69,7 @@ Player.prototype.drawNumbersInHand=function(node,number){
 
 };
 
-    //funcion que MUESTRA VISUALMENTE las fichas de un jugador, su mano
+    //Function that visually shows a player's dominoes, his hand,
     Player.prototype.showPlayerDominoes=function(){
 
     var columnsPlayerindex;
@@ -136,45 +130,42 @@ Player.prototype.drawNumbersInHand=function(node,number){
         }
     };
 
-
+//Give initially a hand of dominoes to player from dominobox.
     Player.prototype.startPlayer=function(dominoBox){
 
       for  (i=0 ;i<this.MAX_DOMINOES; i++){
-
         var shifted =dominoBox.body.shift();
         this.body.unshift(shifted);
       }
       return this.body;
     };
 
-
+    // Search domino by its two numbers
     Player.prototype.searchDomino = function(a,b){
-      console.log("Buscamos para...: ");
+
       console.log(this.name);
-      console.log("numero a en searchNumber: "+a);
-      console.log("numero b en searchNumber: "+b);
+
       for (i=0;i<this.body.length;i++){
         if ((this.body[i].numberOne===a && this.body[i].numberTwo===b)||
          (this.body[i].numberOne===b && this.body[i].numberTwo===a)){
-           console.log("ficha |"+a+"|"+b+"| encontrada");
+
           return true;
         }
       }
       return false;
     };
 
+// Remove visually dominoes from player
 Player.prototype.removePlayerDominoes=function(){
   if (this.name===playerOne.name){
-    console.log('intento quitar clases playerOne');
     $(".dominoplayerone.filled").remove();
   }
   if (this.name===playerTwo.name){
-    console.log('intento quitar clases playerTwo');
     $(".dominoplayertwo.filled").remove();
   }
 };
 
-//recibe el jugador que tiene turno y lo cambia aun no probado
+//Receives the player who has turn and changes it
 Player.prototype.changeTurn=function(){
   if (this.name===playerOne.name){
     this.turn=false;
@@ -185,32 +176,31 @@ Player.prototype.changeTurn=function(){
   }
 };
 
+// Remove visibility
 Player.prototype.hideDominoes=function(){
   if (this.name===playerOne.name){
-    console.log("intento quitar visibilidad player one");
     $('#dominoesplayerone').addClass('hide');
   } else if (this.name===playerTwo.name){
-    console.log("intento quitar visibilidad player Two");
     $('#dominoesplayertwo').addClass('hide');
   }
 };
 
+// Give visibility
 Player.prototype.showDominoes=function(){
   if (this.name===playerOne.name){
-    console.log("intento dar visibilidad player one");
     $('#dominoesplayerone').removeClass('hide');
   } else if (this.name===playerTwo.name){
-    console.log("intento dar visibilidad player two");
     $('#dominoesplayertwo').removeClass('hide');
   }
 };
 
+// Add domino to player
 Player.prototype.addDomino=function(addedDomino){
   this.body.push(addedDomino);
 };
 
 
-
+// playerOne and playerTwo names by prompt
 var person1=function(){
   return prompt("Please enter your name, playerOne");
 };
@@ -226,7 +216,3 @@ var playerOne = new Player({
 var playerTwo= new Player({
   name: person2(),
 });
-// czmbio playerOne por Pablo
-// cambio playerTwo por Pedro
-// cambio 'playerOne' por playerOne.name and 'playerTwo.name'
-// introduzco nombres mediante prompt;

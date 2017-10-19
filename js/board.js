@@ -1,5 +1,3 @@
-'esversion: 6';
-
 
     function Board(options) {
 
@@ -11,24 +9,15 @@
     }
 
 
-//funcion para asegurar movimiento graficamente correcto
+//Function to check graphically correct movement
 Board.prototype.graphicOk=function(boardPlace,newDom,snakeDom){
-  console.log('En function board.prototype.graphicOK');
-  console.log(boardPlace);
-  console.log(snakeDom);
+
+
   thisdataRow=parseInt($(boardPlace).attr('data-row'));
   thisdataCol=parseInt($(boardPlace).attr('data-col'));
-  console.log(thisdataRow-1,thisdataCol);
-  console.log(thisdataRow,thisdataCol-1);
-  console.log(thisdataRow,thisdataCol+1);
-  console.log(thisdataRow+1,thisdataCol+1);
-  console.log(thisdataRow-1,thisdataCol+1);
-  console.log(thisdataRow+2,thisdataCol);
   console.log($('div[data-row="'+(thisdataRow)+'"][data-col="'+thisdataCol+'"]').html());
- console.log("DATOS BASICOS");
-  console.log(newDom.numberOne);
-  console.log(newDom.numberTwo);
-  console.log(snakeDom);
+
+
   //verify begin mov to begin
   if (
     ((parseInt($('div[data-row="'+(thisdataRow-1)+'"][data-col="'+thisdataCol+'"]').html())===newDom.numberOne||
@@ -43,26 +32,23 @@ Board.prototype.graphicOk=function(boardPlace,newDom,snakeDom){
             newDom.numberTwo===snakeDom.numberTwo&&snakeDom.numberTwoOpen))
         )
       {
-     console.log ('movimiento correcto');
+
      return true;
    } else {
-     console.log('mal movimiento o mal detectado');
+
      return false;
    }
 };
 
 
-
+// Move domino to begin of array in board
   Board.prototype.movToBegin=function(selectedDomino){
-    console.log("en movToBegin");
-    console.log(selectedDomino);
+
 
       //debugger;
       switch  (this.domino[0].numberOneOpen||this.domino[0].numberTwoOpen)
 
-
             {
-
               case this.domino[0].numberOneOpen&&(this.domino[0].numberOne===selectedDomino.numberOne):
                     this.domino[0].numberOneOpen=false;
                     selectedDomino.numberOneOpen=false;
@@ -85,22 +71,19 @@ Board.prototype.graphicOk=function(boardPlace,newDom,snakeDom){
                 break;
               default: {
                 //debugger;
-                console.log("movimiento erroneo por alante!!!!!!");
+
                 return false;
               }
-
             }
             return true;
 };
 
 
-
+//Move domino to end of array in board
 Board.prototype.movToEnd=function(selectedDomino){
-    console.log(this.domino);
+
     var last;
     last=this.domino.length-1;
-    console.log("last: "+last);
-    console.log(this.domino[last]);
 
     switch (
             this.domino[last].numberOneOpen||this.domino[last].numberTwoOpen //se puede insertar otra ficha
@@ -127,7 +110,7 @@ Board.prototype.movToEnd=function(selectedDomino){
               this.domino.push(selectedDomino);
             break;
             default:{
-              console.log("movimiento erroneo por detrás!!!!!!");
+
               return false;
             }
           }
@@ -166,8 +149,8 @@ Board.prototype.movToEnd=function(selectedDomino){
     Board.prototype.insertUnshiftDomino=function(domino){
       var snake;
       snake=this.domino.unshift(domino);
-      console.log('snake');
-      console.log(snake);
+
+      
     };
 
   var gameBoard = new Board({
